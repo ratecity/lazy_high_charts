@@ -30,16 +30,13 @@ module LazyHighCharts
       
       graph =<<-EOJS
       <script type="text/javascript">
-      (function() {
-        var onload = window.onload;
-        window.onload = function(){
-          if (typeof onload == "function") onload();
-          var options, chart;
-          options = { #{options_collection.join(',')} };
-          #{capture(&block) if block_given?}
-          chart = new Highcharts.#{type}(options);
-        };
-      })()
+      var chart;
+      function drawChart() {
+        var options;
+        options = { #{options_collection.join(',')} };
+        #{capture(&block) if block_given?}
+        chart = new Highcharts.#{type}(options);
+      };
       </script>
       EOJS
 

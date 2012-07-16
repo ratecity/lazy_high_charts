@@ -1,6 +1,6 @@
 module LazyHighCharts
   class HighChart
-    CANVAS_DEFAULT_HTML_OPTIONS = { :style => "height: 300px; width:615px" }
+    #CANVAS_DEFAULT_HTML_OPTIONS = { :style => "height: 300px; width:615px" }
     SERIES_OPTIONS = %w(lines points bars shadowSize colors)
 
     attr_accessor :data, :options, :placeholder, :html_options
@@ -8,13 +8,12 @@ module LazyHighCharts
     alias  :canvas= :placeholder=
 
     def initialize(canvas = nil, html_opts = {})
-
       @collection_filter = nil
       self.tap do |high_chart|
         high_chart.data       ||= []
         high_chart.options    ||= {}
         high_chart.defaults_options
-        high_chart.html_options = html_opts.reverse_merge(CANVAS_DEFAULT_HTML_OPTIONS)
+        high_chart.html_options = html_opts #.merge(CANVAS_DEFAULT_HTML_OPTIONS)
         high_chart.canvas       = canvas if canvas
         yield high_chart if block_given?
       end
@@ -23,17 +22,16 @@ module LazyHighCharts
     #	title:		legend: 		xAxis: 		yAxis: 		tooltip: 	credits:  :plotOptions
 
     def defaults_options
-      self.title({ :text=>"example test title from highcharts gem"})
-      self.legend({ :layout=>"vertical", :style=>{} }) 
+      self.title({ :text => "example test title from highcharts gem"})
+      self.legend({ :layout => "vertical", :style=>{} }) 
       self.xAxis({})
-      self.yAxis({ :title=> {:text=> nil}, :labels=>{} })
+      self.yAxis({ :title => {:text=> nil}, :labels=>{} })
       self.tooltip({ :enabled=>true })
       self.credits({ :enabled => false})
       self.plotOptions({ :areaspline => { } })
       self.chart({ :defaultSeriesType=>"areaspline" , :renderTo => nil})
       self.subtitle({})
     end
-
 
     # Pass other methods through to the javascript high_chart object.
     #

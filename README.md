@@ -122,11 +122,11 @@ Just call HighChart Helper this way:
 
 ## Option reference:
 
-http://www.highcharts.com/ref/
+[http://www.highcharts.com/ref](http://www.highcharts.com/ref)
 
 ## HighCharts License:
 
-http://www.highcharts.com/license
+[http://www.highcharts.com/license](http://www.highcharts.com/license)
      
 
 ## Contributing
